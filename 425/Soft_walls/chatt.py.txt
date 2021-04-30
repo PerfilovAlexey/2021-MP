@@ -1,12 +1,12 @@
-import socket # áèáëèîòåêà äëÿ îáìåíà ñîêåòàìè
+import socket # Ã¡Ã¨Ã¡Ã«Ã¨Ã®Ã²Ã¥ÃªÃ  Ã¤Ã«Ã¿ Ã®Ã¡Ã¬Ã¥Ã­Ã  Ã±Ã®ÃªÃ¥Ã²Ã Ã¬Ã¨
 import threading
 import queue
-import sys # áèáëèîòåêà äëÿ ðàáîòû ñ ñèñòåìíûìè ôóíêöèÿìè
-import random # áèáëèîòåêà äëÿ ðàáîòû ñ ðàíäîìîì
-import os # áèáëèîòåêà äëÿ ðàáîòû ñ îïåðàöèîííîé ñèñòåìîé
+import sys # Ã¡Ã¨Ã¡Ã«Ã¨Ã®Ã²Ã¥ÃªÃ  Ã¤Ã«Ã¿ Ã°Ã Ã¡Ã®Ã²Ã» Ã± Ã±Ã¨Ã±Ã²Ã¥Ã¬Ã­Ã»Ã¬Ã¨ Ã´Ã³Ã­ÃªÃ¶Ã¨Ã¿Ã¬Ã¨
+import random # Ã¡Ã¨Ã¡Ã«Ã¨Ã®Ã²Ã¥ÃªÃ  Ã¤Ã«Ã¿ Ã°Ã Ã¡Ã®Ã²Ã» Ã± Ã°Ã Ã­Ã¤Ã®Ã¬Ã®Ã¬
+import os # Ã¡Ã¨Ã¡Ã«Ã¨Ã®Ã²Ã¥ÃªÃ  Ã¤Ã«Ã¿ Ã°Ã Ã¡Ã®Ã²Ã» Ã± Ã®Ã¯Ã¥Ã°Ã Ã¶Ã¨Ã®Ã­Ã­Ã®Ã© Ã±Ã¨Ã±Ã²Ã¥Ã¬Ã®Ã©
 
 
-#Client Code - Êîä êëèåíòà:
+#Client Code - ÃŠÃ®Ã¤ ÃªÃ«Ã¨Ã¥Ã­Ã²Ã :
 def ReceiveData(sock):
     while True:
         try:
@@ -15,32 +15,32 @@ def ReceiveData(sock):
         except:
             pass
 
-def RunClient(serverIP): # ôóíêöèÿ çàïóñêà êëèåíòà(îò IP ñåðâåðà)
+def RunClient(serverIP): # Ã´Ã³Ã­ÃªÃ¶Ã¨Ã¿ Ã§Ã Ã¯Ã³Ã±ÃªÃ  ÃªÃ«Ã¨Ã¥Ã­Ã²Ã (Ã®Ã² IP Ã±Ã¥Ã°Ã¢Ã¥Ã°Ã )
     host = socket.gethostbyname(socket.gethostname())
-    port = random.randint(6000,10000) # áåð¸ì ðàíäîìíûé ïîðò
-    print('Client IP->'+str(host)+' Port->'+str(port)) # ïèøåì õîñò è ïîðò íà êëèåíò
-    server = (str(serverIP),5000) # IP ñåðâåðà è ïîðò=5000
-    s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) # ñîçäà¸ì îáúåêò äëÿ îáìåíà ñîêåòàìè
+    port = random.randint(6000,10000) # Ã¡Ã¥Ã°Â¸Ã¬ Ã°Ã Ã­Ã¤Ã®Ã¬Ã­Ã»Ã© Ã¯Ã®Ã°Ã²
+    print('Client IP->'+str(host)+' Port->'+str(port)) # Ã¯Ã¨Ã¸Ã¥Ã¬ ÃµÃ®Ã±Ã² Ã¨ Ã¯Ã®Ã°Ã² Ã­Ã  ÃªÃ«Ã¨Ã¥Ã­Ã²
+    server = (str(serverIP),5000) # IP Ã±Ã¥Ã°Ã¢Ã¥Ã°Ã  Ã¨ Ã¯Ã®Ã°Ã²=5000
+    s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) # Ã±Ã®Ã§Ã¤Ã Â¸Ã¬ Ã®Ã¡ÃºÃ¥ÃªÃ² Ã¤Ã«Ã¿ Ã®Ã¡Ã¬Ã¥Ã­Ã  Ã±Ã®ÃªÃ¥Ã²Ã Ã¬Ã¨
     s.bind((host,port)) #
     
-    name = input('Please write your name here: ') # ââîäèì ñâî¸ èìÿ äëÿ èäåíòèôèêàöèè
-    if name == '': # åñëè èìÿ - ïóñòàÿ ñòðîêà, òî:
-        name = 'Guest'+str(random.randint(1000,9999)) # èìÿ - ãîñòü ¹... ðàíäîì
-        print('Your name is:'+name) # Ïå÷àòàåì: Âàøå èìÿ ...
-    s.sendto(name.encode('utf-8'),server) # Îòïðàâëÿåì èìÿ íà ñåðâåð
+    name = input('Please write your name here: ') # Ã¢Ã¢Ã®Ã¤Ã¨Ã¬ Ã±Ã¢Ã®Â¸ Ã¨Ã¬Ã¿ Ã¤Ã«Ã¿ Ã¨Ã¤Ã¥Ã­Ã²Ã¨Ã´Ã¨ÃªÃ Ã¶Ã¨Ã¨
+    if name == '': # Ã¥Ã±Ã«Ã¨ Ã¨Ã¬Ã¿ - Ã¯Ã³Ã±Ã²Ã Ã¿ Ã±Ã²Ã°Ã®ÃªÃ , Ã²Ã®:
+        name = 'Guest'+str(random.randint(1000,9999)) # Ã¨Ã¬Ã¿ - Ã£Ã®Ã±Ã²Ã¼ Â¹... Ã°Ã Ã­Ã¤Ã®Ã¬
+        print('Your name is:'+name) # ÃÃ¥Ã·Ã Ã²Ã Ã¥Ã¬: Ã‚Ã Ã¸Ã¥ Ã¨Ã¬Ã¿ ...
+    s.sendto(name.encode('utf-8'),server) # ÃŽÃ²Ã¯Ã°Ã Ã¢Ã«Ã¿Ã¥Ã¬ Ã¨Ã¬Ã¿ Ã­Ã  Ã±Ã¥Ã°Ã¢Ã¥Ã°
     threading.Thread(target=ReceiveData,args=(s,)).start()
-    while True: # áåñêîíå÷íûé öèêë
-        data = input() # èíôîðìàöèÿ - âõîäíàÿ ñ êëàâèàòóðû
-        if data == 'qqq': # Åñëè èíôîðìàöèÿ = qqq, òî çàâåðøàåì öèêë
+    while True: # Ã¡Ã¥Ã±ÃªÃ®Ã­Ã¥Ã·Ã­Ã»Ã© Ã¶Ã¨ÃªÃ«
+        data = input() # Ã¨Ã­Ã´Ã®Ã°Ã¬Ã Ã¶Ã¨Ã¿ - Ã¢ÃµÃ®Ã¤Ã­Ã Ã¿ Ã± ÃªÃ«Ã Ã¢Ã¨Ã Ã²Ã³Ã°Ã»
+        if data == 'qqq': # Ã…Ã±Ã«Ã¨ Ã¨Ã­Ã´Ã®Ã°Ã¬Ã Ã¶Ã¨Ã¿ = qqq, Ã²Ã® Ã§Ã Ã¢Ã¥Ã°Ã¸Ã Ã¥Ã¬ Ã¶Ã¨ÃªÃ«
             break
-        elif data=='': # Åñëè èíôîðìàöèÿ = ïóñòîé ñòðîêå, òî ïðîäîëæàåì öèêë
+        elif data=='': # Ã…Ã±Ã«Ã¨ Ã¨Ã­Ã´Ã®Ã°Ã¬Ã Ã¶Ã¨Ã¿ = Ã¯Ã³Ã±Ã²Ã®Ã© Ã±Ã²Ã°Ã®ÃªÃ¥, Ã²Ã® Ã¯Ã°Ã®Ã¤Ã®Ã«Ã¦Ã Ã¥Ã¬ Ã¶Ã¨ÃªÃ«
             continue
-        data = '['+name+']' + '->'+ data # èíôîðìàöèÿ = [èìÿ] -> èíôîðìàöèÿ
-        s.sendto(data.encode('utf-8'),server) # îòïðàâëÿåì èíôîðìàöèþ íà ñåðâåð
-    s.sendto(data.encode('utf-8'),server)# îòïðàâëÿåì èíôîðìàöèþ íà ñåðâåð ïðè âûõîäå(qqq)
-    s.close()# çàêðûâàåì îáúåêò îáìåíà
-    os._exit(0) # âûõîäèì èç êëèåíòà
-#Client Code Ends Here - Êîä êëèåíòà çàêàí÷èâàåòñÿ çäåñü
+        data = '['+name+']' + '->'+ data # Ã¨Ã­Ã´Ã®Ã°Ã¬Ã Ã¶Ã¨Ã¿ = [Ã¨Ã¬Ã¿] -> Ã¨Ã­Ã´Ã®Ã°Ã¬Ã Ã¶Ã¨Ã¿
+        s.sendto(data.encode('utf-8'),server) # Ã®Ã²Ã¯Ã°Ã Ã¢Ã«Ã¿Ã¥Ã¬ Ã¨Ã­Ã´Ã®Ã°Ã¬Ã Ã¶Ã¨Ã¾ Ã­Ã  Ã±Ã¥Ã°Ã¢Ã¥Ã°
+    s.sendto(data.encode('utf-8'),server)# Ã®Ã²Ã¯Ã°Ã Ã¢Ã«Ã¿Ã¥Ã¬ Ã¨Ã­Ã´Ã®Ã°Ã¬Ã Ã¶Ã¨Ã¾ Ã­Ã  Ã±Ã¥Ã°Ã¢Ã¥Ã° Ã¯Ã°Ã¨ Ã¢Ã»ÃµÃ®Ã¤Ã¥(qqq)
+    s.close()# Ã§Ã ÃªÃ°Ã»Ã¢Ã Ã¥Ã¬ Ã®Ã¡ÃºÃ¥ÃªÃ² Ã®Ã¡Ã¬Ã¥Ã­Ã 
+    os._exit(0) # Ã¢Ã»ÃµÃ®Ã¤Ã¨Ã¬ Ã¨Ã§ ÃªÃ«Ã¨Ã¥Ã­Ã²Ã 
+#Client Code Ends Here - ÃŠÃ®Ã¤ ÃªÃ«Ã¨Ã¥Ã­Ã²Ã  Ã§Ã ÃªÃ Ã­Ã·Ã¨Ã¢Ã Ã¥Ã²Ã±Ã¿ Ã§Ã¤Ã¥Ã±Ã¼
 
 
 #Server Code
@@ -50,7 +50,7 @@ def RecvData(sock,recvPackets):
         recvPackets.put((data,addr))
 
 def RunServer():
-    host = socket.gethostbyname(socket.gethostname()) #áåð¸ì ip àäðåñ ñ ñèñòåìû
+    host = socket.gethostbyname(socket.gethostname()) #Ã¡Ã¥Ã°Â¸Ã¬ ip Ã Ã¤Ã°Ã¥Ã± Ã± Ã±Ã¨Ã±Ã²Ã¥Ã¬Ã»
     port = 5000
     print('Server hosting on IP-> '+str(host))
     s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
@@ -93,3 +93,4 @@ if __name__ == '__main__':
     else:
         print('Run Serevr:-> python Chat.py')
         print('Run Client:-> python Chat.py <ServerIP>')
+        ghb
